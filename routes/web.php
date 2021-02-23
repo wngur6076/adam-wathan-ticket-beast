@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConcertsController;
+use App\Http\Controllers\ConcertsOrdersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,5 @@ use App\Http\Controllers\ConcertsController;
 */
 
 Route::get('/concerts/{id}', [ConcertsController::class, 'show']);
+
+Route::post('/concerts/{id}/orders', [ConcertsOrdersController::class, 'store']);
