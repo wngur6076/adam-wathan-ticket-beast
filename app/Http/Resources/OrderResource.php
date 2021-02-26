@@ -17,7 +17,7 @@ class OrderResource extends JsonResource
         return [
             'email' => $this->email,
             'ticket_quantity' => $this->ticketQuantity(),
-            'amount' => $this->ticketQuantity() * $this->concert->ticket_price,
+            'amount' => $this->amount,
         ];
     }
 }
