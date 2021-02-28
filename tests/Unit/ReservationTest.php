@@ -7,13 +7,14 @@ use App\Models\Concert;
 use App\Models\Reservation;
 use App\Models\Ticket;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Mockery;
 
 class ReservationTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    function calculating_the_total_cost()
+    public function calculating_the_total_cost()
     {
         // $concert = Concert::factory()->create(['ticket_price' => 1200])->addTickets(3);
         // $tickets = $concert->findTickets(3);
@@ -26,5 +27,23 @@ class ReservationTest extends TestCase
         $reservation = new Reservation($tickets);
 
         $this->assertEquals(3600, $reservation->totalCost());
+    }
+
+    /** @test */
+    public function reserved_tickets_are_released_when_a_reservation_is_cancelled()
+    {
+        $tickets = collect([
+            Mockery::spy(Ticket::class),
+            Mockery::spy(Ticket::class),
+            Mockery::spy(Ticket::class),
+        ]);
+
+        $reservation = new Reservation($tickets);
+
+        $reservation->cancel();
+
+        foreach ($tickets as $ticket) {
+            $ticket->shouldHaveReceived('release');
+        }
     }
 }

@@ -134,7 +134,7 @@ class ConcertTest extends TestCase
     function cannot_reserve_tickets_that_have_already_been_purchased()
     {
         $concert = Concert::factory()->create()->addTickets(3);
-        $order = $concert->orderTickets('jane@example.com', 2);
+        $concert->orderTickets('jane@example.com', 2);
 
         try {
             $concert->reserveTickets(2);
@@ -150,7 +150,7 @@ class ConcertTest extends TestCase
     function cannot_reserve_tickets_that_have_already_been_reserved()
     {
         $concert = Concert::factory()->create()->addTickets(3);
-        $order = $concert->reserveTickets(2);
+        $concert->reserveTickets(2);
 
         try {
             $concert->reserveTickets(2);
