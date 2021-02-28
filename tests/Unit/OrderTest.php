@@ -5,6 +5,8 @@ namespace Tests\Unit;
 use App\Http\Resources\OrderResource;
 use App\Models\Concert;
 use App\Models\Order;
+use App\Models\Reservation;
+use App\Models\Ticket;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -31,7 +33,6 @@ class OrderTest extends TestCase
     /** @test */
     function creating_an_order_from_tickets_and_email_and_amount()
     {
-        $this->withoutExceptionHandling();
         $concert = Concert::factory()->create()->addTickets(5);
         $this->assertEquals(5, $concert->ticketsRemaining());
 

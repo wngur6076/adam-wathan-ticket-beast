@@ -6,9 +6,10 @@ class Reservation
 {
     private $tickets;
 
-    public function __construct($tickets)
+    public function __construct($tickets, $email)
     {
         $this->tickets = $tickets;
+        $this->email = $email;
     }
 
     public function totalCost()
@@ -21,5 +22,23 @@ class Reservation
         foreach ($this->tickets as $ticket) {
             $ticket->release();
         }
+    }
+
+    public function tickets()
+    {
+        return $this->tickets;
+    }
+
+    public function email()
+    {
+        return $this->email;
+    }
+
+    public function complete($paymentGateway, $paymentToken)
+    {
+         // 고객에게 티켓을 청구
+        $paymentGateway->charge($this->totalCost(), $paymentToken);
+
+        return Order::forTickets($this->tickets(), $this->email(),  $this->totalCost());
     }
 }

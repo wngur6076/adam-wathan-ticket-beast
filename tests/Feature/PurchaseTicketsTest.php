@@ -38,7 +38,6 @@ class PurchaseTicketsTest extends TestCase
     /** @test */
     function customer_can_purchase_tickets_to_a_published_concert()
     {
-        $this->withoutExceptionHandling();
         // Arrange
         // Create a concert
         $concert = Concert::factory()->published()->create(['ticket_price' => 3250])->addTickets(3);
