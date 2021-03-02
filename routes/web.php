@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ConcertsController;
 use App\Http\Controllers\ConcertsOrdersController;
 
@@ -15,6 +16,16 @@ use App\Http\Controllers\ConcertsOrdersController;
 |
 */
 
+Route::get('/mockups/order', function () {
+    return view('orders.show');
+});
+
 Route::get('/concerts/{id}', [ConcertsController::class, 'show']);
 
 Route::post('/concerts/{id}/orders', [ConcertsOrdersController::class, 'store']);
+
+Route::get('/orders/{confirmation_number}', [OrdersController::class, 'show']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
