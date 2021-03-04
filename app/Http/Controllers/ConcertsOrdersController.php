@@ -8,7 +8,6 @@ use App\Billing\PaymentGateway;
 use App\Billing\PaymentFailedException;
 use App\Exceptions\NotEnoughTicketsException;
 use App\Http\Resources\OrderResource;
-use App\Models\Order;
 
 class ConcertsOrdersController extends Controller
 {

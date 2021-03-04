@@ -2,11 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Http\Resources\OrderResource;
 use App\Models\Concert;
 use App\Models\Order;
-use App\Models\Reservation;
-use App\Models\Ticket;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
