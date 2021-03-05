@@ -5,6 +5,7 @@ namespace App\Models;
 class Reservation
 {
     private $tickets;
+    private $email;
 
     public function __construct($tickets, $email)
     {
@@ -37,8 +38,8 @@ class Reservation
     public function complete($paymentGateway, $paymentToken)
     {
          // 고객에게 티켓을 청구
-        $paymentGateway->charge($this->totalCost(), $paymentToken);
+        $charge = $paymentGateway->charge($this->totalCost(), $paymentToken);
 
-        return Order::forTickets($this->tickets(), $this->email(),  $this->totalCost());
+        return Order::forTickets($this->tickets(), $this->email(),  $charge);
     }
 }
